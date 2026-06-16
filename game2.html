@@ -272,8 +272,8 @@ h1{
 <canvas id="sc"></canvas>
 
 <div id="card">
-  <h1>🍲 Wazwan Kitchen</h1>
-  <div id="hint">Step 1 — Tap Aahil to grind the spices! 🌶️</div>
+  <h1>🍲 Biryani Kitchen</h1>
+  <div id="hint">Step 1 — Tap Zawiyar to grind the spices! 🌶️</div>
 
   <div id="stage">
     <div id="cflayer"></div>
@@ -397,9 +397,9 @@ h1{
         <path d="M95 44 Q92 34 96 26" fill="none" stroke="rgba(240,234,216,.6)" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
     </div>
-    <div id="popup-title">Wazwan is Ready!</div>
+    <div id="popup-title">Biryani is Ready!</div>
     <div id="popup-hearts">🌹 💛 🌹</div>
-    <div id="popup-msg">Let's have Wazwan together&nbsp;🍲<br><em>Nailla, Aahil, & Wazwan <3 </em></div>
+    <div id="popup-msg">Let's have Biryani together&nbsp;🍲<br><em>Momina, Zawiyar, & Biryani <3 </em></div>
     <button id="popup-btn" onclick="closePopup()">✨ Thank you! ✨</button>
   </div>
 </div>
@@ -440,7 +440,7 @@ function grindSpice(){
   updateBars();
   if(s.spice>=100){
     s.step=2;
-    setHint('Step 2 — Hold Nailla to stir the pot! 🥄','ok');
+    setHint('Step 2 — Hold Momina to stir the pot! 🥄','ok');
     char2.parentElement.style.filter='drop-shadow(0 0 8px #f5d06a)';
   } else {
     const left=Math.ceil((100-s.spice)/8);
@@ -502,7 +502,7 @@ setInterval(()=>{
       s.stirHeld=false;
       char2.style.animation='';
       char2.parentElement.style.filter='';
-      setHint('Step 3 — Watch the Wazwan cook! 🍲','ok');
+      setHint('Step 3 — Watch the Biryani cook! 🍲','ok');
     } else {
       setHint(`Keep stirring! Almost there… (${s.stir}%) 🥄`);
     }
