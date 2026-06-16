@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eid Mubarak</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --background-color: #0B1026;
+      --contrast-color: #F6C453;
+      --grey-color: #C9C9C9;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--background-color);
+      position: relative;
+      font-family: sans-serif;
+    }
+
+    .content {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+      padding: 0 clamp(16px, 5vw, 60px);
+      /* shifted up a little on all screens, less aggressive on mobile */
+      transform: translateY(clamp(-55px, -4vh, -20px));
+    }
+
+    .arabic-main {
+      font-family: "Amiri", serif;
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      color: var(--contrast-color);
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(246, 196, 83, 0.7);
+      line-height: 1.3;
+      direction: rtl;
+      animation: textEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .arabic-name {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      color: var(--contrast-color);
+      margin-top: 10px;
+      opacity: 0.88;
+      text-shadow: 0 0 14px rgba(246, 196, 83, 0.5);
+      direction: rtl;
+      font-weight: 400;
+      animation: textEntrance 1.4s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes textEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+        filter: blur(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    
+    .arabic-main {
+      background: linear-gradient(
+        90deg,
+        #F6C453 0%,
+        #ffe9a0 40%,
+        #F6C453 60%,
+        #e8a820 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: textEntrance 1.4s cubic-bezier(0.22, 1, 0.36, 1) both,
+                 shimmer 4s 1.8s linear infinite;
+    }
+
+    @keyframes shimmer {
+      from { background-position: 0% center; }
+      to   { background-position: 200% center; }
+    }
+
+    .password-wrapper {
+      position: fixed;
+      bottom: clamp(24px, 4vh, 48px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      width: max-content;
+      max-width: calc(100vw - 40px);
+      animation: pwEntrance 1.2s 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes pwEntrance {
+      from { opacity: 0; transform: translateX(-50%) translateY(18px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    .password-label {
+      font-family: "Amiri", serif;
+      font-size: 0.78rem;
+      color: rgba(246, 196, 83, 0.55);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .password-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1.5px solid rgba(246, 196, 83, 0.45);
+      border-radius: 22px;
+      overflow: hidden;
+      background: rgba(246, 196, 83, 0.07);
+      box-shadow: 0 0 18px rgba(246, 196, 83, 0.18);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .password-row:focus-within {
+      box-shadow: 0 0 28px rgba(246, 196, 83, 0.45);
+      border-color: rgba(246, 196, 83, 0.75);
+    }
+
+    .password-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 9px 16px;
+      font-family: "Amiri", serif;
+      font-size: 1rem;
+      color: var(--contrast-color);
+      width: clamp(130px, 36vw, 200px);
+      letter-spacing: 1px;
+    }
+
+    .password-input::placeholder {
+      color: rgba(246, 196, 83, 0.38);
+      font-size: 0.88rem;
+      letter-spacing: 0.5px;
+    }
+
+    .password-btn {
+      background: rgba(246, 196, 83, 0.15);
+      border: none;
+      border-left: 1px solid rgba(246, 196, 83, 0.3);
+      color: var(--contrast-color);
+      padding: 9px 15px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.25s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .password-btn:hover {
+      background: rgba(246, 196, 83, 0.32);
+    }
+
+    .error-msg {
+      font-family: "Amiri", serif;
+      font-size: 0.8rem;
+      color: #e07070;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      letter-spacing: 0.5px;
+    }
+
+    .error-msg.visible {
+      opacity: 1;
+    }
+
+ 
+    @keyframes shake {
+      0%, 100% { transform: translateX(-50%); }
+      20%       { transform: translateX(calc(-50% - 8px)); }
+      40%       { transform: translateX(calc(-50% + 8px)); }
+      60%       { transform: translateX(calc(-50% - 5px)); }
+      80%       { transform: translateX(calc(-50% + 5px)); }
+    }
+
+    .password-wrapper.shake {
+      animation: shake 0.45s ease;
+    }
+
+
+    .moon {
+      position: absolute;
+      right: 7%;
+      top: 24%;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at 35% 30%, #eeeeee 0%, #c9c9c9 38%, #8f8f8f 100%);
+      border-radius: 50%;
+      box-shadow:
+        -32px 0 0 var(--background-color) inset,
+        0 0 22px rgba(201, 201, 201, 0.55);
+      z-index: 2;
+      overflow: hidden;
+      animation: moonGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes moonGlow {
+      0%, 100% { box-shadow: -32px 0 0 var(--background-color) inset, 0 0 22px rgba(201, 201, 201, 0.55), 0 0 55px rgba(201, 201, 201, 0.12); }
+      50%       { box-shadow: -32px 0 0 var(--background-color) inset, 0 0 38px rgba(201, 201, 201, 0.85), 0 0 80px rgba(201, 201, 201, 0.25); }
+    }
+
+    .moon span {
+      position: absolute;
+      background: rgba(120, 120, 120, 0.35);
+      border-radius: 50%;
+      box-shadow: inset 2px 2px 4px rgba(60, 60, 60, 0.35);
+    }
+
+    .moon span:nth-child(1) { width: 16px; height: 16px; top: 28px; left: 45px; }
+    .moon span:nth-child(2) { width: 10px; height: 10px; top: 60px; left: 70px; }
+    .moon span:nth-child(3) { width: 13px; height: 13px; top: 78px; left: 38px; }
+
+   
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: var(--grey-color);
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.25; transform: scale(1); }
+      50%       { opacity: 1;    transform: scale(1.8); }
+    }
+
+   
+    .shooting-star {
+      position: absolute;
+      width: 120px;
+      height: 1.5px;
+      background: linear-gradient(90deg, rgba(246,196,83,0) 0%, rgba(246,196,83,0.9) 60%, #fff 100%);
+      border-radius: 99px;
+      opacity: 0;
+      transform-origin: right center;
+      animation: shoot linear infinite;
+    }
+
+    @keyframes shoot {
+      0%   { opacity: 0; transform: translateX(0) translateY(0) rotate(-30deg); }
+      5%   { opacity: 1; }
+      40%  { opacity: 0.8; }
+      60%  { opacity: 0; transform: translateX(-380px) translateY(180px) rotate(-30deg); }
+      100% { opacity: 0; transform: translateX(-380px) translateY(180px) rotate(-30deg); }
+    }
+
+  
+    .lantern {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatUp linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) translateX(0) scale(0.6);  opacity: 0; }
+      10%  { opacity: 1; }
+      50%  { transform: translateY(-45vh) translateX(var(--sway)) scale(1); opacity: 0.65; }
+      90%  { opacity: 0.2; }
+      100% { transform: translateY(-100vh) translateX(calc(var(--sway) * 1.6)) scale(0.7); opacity: 0; }
+    }
+
+ 
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--background-color);
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.65s ease;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+ 
+    @media (max-width: 600px) {
+      .content {
+        transform: translateY(clamp(-80px, -8vh, -40px));
+        padding: 0 20px;
+      }
+
+      .arabic-main { font-size: clamp(2.2rem, 11vw, 3.2rem); }
+      .arabic-name  { font-size: clamp(1.8rem, 9vw,  2.6rem); }
+
+      .password-wrapper {
+        bottom: clamp(20px, 5vh, 44px);
+      }
+
+      .password-input {
+        width: clamp(120px, 44vw, 160px);
+      }
+
+      .moon {
+        width: 70px; height: 70px;
+        right: 8%; top: 16%;
+        box-shadow: -20px 0 0 var(--background-color) inset, 0 0 18px rgba(201,201,201,0.55);
+      }
+      .moon span:nth-child(1) { width: 10px; height: 10px; top: 18px; left: 28px; }
+      .moon span:nth-child(2) { width:  7px; height:  7px; top: 38px; left: 44px; }
+      .moon span:nth-child(3) { width:  9px; height:  9px; top: 50px; left: 25px; }
+    }
+
+    @media (min-width: 1200px) {
+      .content {
+        transform: translateY(-40px);
+      }
+      .password-wrapper {
+        bottom: 48px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars"></div>
+  <div class="lanterns"></div>
+  <div class="shooting-stars"></div>
+
+  <div class="moon">
+    <span></span><span></span><span></span>
+  </div>
+
+  <main class="content">
+    <p class="arabic-main">عيد مبارك</p>
+    <p class="arabic-name">نائلة</p>
+  </main>
+
+
+  <div class="password-wrapper" id="pwWrapper">
+    <span class="password-label">Enter to open ✦</span>
+    <div class="password-row">
+      <input
+        class="password-input"
+        id="pwInput"
+        type="password"
+        placeholder="your key…"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="password-btn" id="pwBtn" aria-label="Unlock">➜</button>
+    </div>
+    <span class="error-msg" id="errMsg">That's not quite right ✦</span>
+  </div>
+
+  <!-- Fade overlay for transition -->
+  <div class="overlay" id="overlay"></div>
+
+  <script>
+    
+    const starsContainer = document.querySelector(".stars");
+    for (let i = 0; i < 80; i++) {
+      const star = document.createElement("span");
+      star.classList.add("star");
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top  = Math.random() * 100 + "vh";
+      star.style.animationDelay    = Math.random() * 3 + "s";
+      star.style.animationDuration = 1.5 + Math.random() * 2.5 + "s";
+      const s = 2 + Math.random() * 2.5;
+      star.style.width  = s + "px";
+      star.style.height = s + "px";
+      starsContainer.appendChild(star);
+    }
+
+
+    const shootContainer = document.querySelector(".shooting-stars");
+    const shootData = [
+      { top: "12%", left: "80%", delay: "3.5s",  dur: "9s"  },
+      { top: "8%",  left: "55%", delay: "11s",   dur: "8s"  },
+      { top: "20%", left: "65%", delay: "18s",   dur: "10s" },
+      { top: "6%",  left: "40%", delay: "25s",   dur: "8.5s"},
+      { top: "15%", left: "90%", delay: "33s",   dur: "9.5s"},
+    ];
+    shootData.forEach(d => {
+      const el = document.createElement("div");
+      el.classList.add("shooting-star");
+      el.style.top              = d.top;
+      el.style.left             = d.left;
+      el.style.animationDelay   = d.delay;
+      el.style.animationDuration= d.dur;
+      shootContainer.appendChild(el);
+    });
+
+
+    const lanternContainer = document.querySelector(".lanterns");
+    const lanternColors = [
+      "rgba(246,196,83,0.55)",
+      "rgba(255,160,80,0.45)",
+      "rgba(246,196,83,0.35)",
+      "rgba(255,200,120,0.5)",
+      "rgba(220,150,60,0.4)",
+    ];
+    for (let i = 0; i < 10; i++) {
+      const el = document.createElement("div");
+      el.classList.add("lantern");
+      const size  = 6 + Math.random() * 12;
+      const color = lanternColors[Math.floor(Math.random() * lanternColors.length)];
+      const sway  = (Math.random() - 0.5) * 120;
+      el.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        background: ${color};
+        box-shadow: 0 0 ${size * 2}px ${size}px ${color};
+        bottom: ${-size}px;
+        left: ${5 + Math.random() * 90}%;
+        --sway: ${sway}px;
+        animation-delay: ${Math.random() * 18}s;
+        animation-duration: ${14 + Math.random() * 12}s;
+      `;
+      lanternContainer.appendChild(el);
+    }
+
+    const PASSWORD   = "Nailla25";
+    const NEXT_PAGE  = "rose.html";
+
+    const pwInput   = document.getElementById("pwInput");
+    const pwBtn     = document.getElementById("pwBtn");
+    const pwWrapper = document.getElementById("pwWrapper");
+    const errMsg    = document.getElementById("errMsg");
+    const overlay   = document.getElementById("overlay");
+
+    function attempt() {
+      if (pwInput.value === PASSWORD) {
+        errMsg.classList.remove("visible");
+        overlay.classList.add("active");
+        setTimeout(() => { window.location.href = NEXT_PAGE; }, 680);
+      } else {
+        errMsg.classList.add("visible");
+        pwWrapper.classList.remove("shake");
+        void pwWrapper.offsetWidth;
+        pwWrapper.classList.add("shake");
+        pwInput.value = "";
+        pwInput.focus();
+      }
+    }
+
+    pwBtn.addEventListener("click", attempt);
+    pwInput.addEventListener("keydown", e => { if (e.key === "Enter") attempt(); });
+  </script>
+
+</body>
+</html>
